@@ -1,42 +1,9 @@
-<html>
-  <head>
-    <title>PSM</title>
-  </head>
-  <body>
-    <div>
-      <h1><a href="/">Futuro blog de mis peliculas, series y música</a></h1>
-    </div>
-
-    <div>
-      <p>published: 14.06.2014, 12:14</p>
-      <h2><a href="">Parásitos</a></h2>
-      <p>
-        Tanto Gi Taek como su familia están sin trabajo. Cuando su hijo mayor,
-        Gi Woo, empieza a recibir clases particulares en la adinerada casa de
-        Park, las dos familias, que tienen mucho en común pese a pertenecer a
-        dos mundos totalmente distintos, comienzan una relación de resultados
-        imprevisibles.
-      </p>
-    </div>
-
-    <div>
-      <p>published: 14.06.2014, 12:14</p>
-      <h2><a href="">Once Upon a Time in Hollywood</a></h2>
-      <p>
-        A finales de los 60, Hollywood empieza a cambiar y el actor Rick Dalton
-        trata de adaptarse a los nuevos tiempos. Junto a su doble, ambos
-        experimentan problemas para modificar sus hábitos, debido a lo
-        enraizados que están. Al mismo tiempo, nace una relación entre Rick y la
-        actriz Sharon Tate, que fue víctima de la familia Manson en la matanza
-        de 1969.
-      </p>
-    </div>
-  </body>
-  {% for post in posts %}
-  <div>
+{% extends 'blog/base.html' %} {% block content %} {% for post in posts %}
+<div class="post">
+  <div class="date">
     <p>publicado: {{ post.published_date }}</p>
-    <h2><a href="">{{ post.title }}</a></h2>
-    <p>{{ post.text|linebreaksbr }}</p>
   </div>
-  {% endfor %}
-</html>
+  <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+  <p>{{ post.text|linebreaksbr }}</p>
+</div>
+{% endfor %} {% endblock %}
